@@ -54,7 +54,7 @@
                       <input type="number" class="form-control" placeholder="Enter Captcha" aria-label="Captcha">
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-dark w-100 mt-4 mb-3">Sign in</button>
+                      <a type="button" class="btn btn-dark w-100 mt-4 mb-3" href="admin/dashboard.php">Sign in</a>
                     </div>
                   </form>
                 </div>
