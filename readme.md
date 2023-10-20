@@ -1,6 +1,6 @@
 # E-Commerce Penjualan Notebook dengan PHP
 
-![Banner E-Commerce](https://yourwebsite.com/path-to-your-banner-image.jpg)
+![Banner E-Commerce](https://github.com/IchsanHanifdeal/ecommerce/blob/main/assets/img/banner.png)
 
 Selamat datang di proyek E-Commerce Penjualan Notebook kami! Proyek ini dibangun dengan menggunakan PHP dan bertujuan untuk menyediakan platform sederhana untuk pembelian notebook online. Dengan proyek ini, Anda dapat belajar dan mengembangkan pengetahuan Anda tentang pengembangan web dan e-commerce.
 
