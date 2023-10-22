@@ -1,3 +1,33 @@
+<?php
+$recaptchaSecret = '6Lc9-LYoAAAAAAS8ll2qHqbrE-8TRkL__0PifccM';
+$recaptchaResponse = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
+
+if (!empty($recaptchaResponse)) {
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = array(
+        'secret' => $recaptchaSecret,
+        'response' => $recaptchaResponse
+    );
+
+    $options = array(
+        'http' => array(
+            'method' => 'POST',
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'content' => http_build_query($data)
+        )
+    );
+
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    $responseKeys = json_decode($result, true);
+
+    if (intval($responseKeys["success"]) !== 1) {
+        echo "Verifikasi CAPTCHA gagal, harap coba lagi.";
+    } else {
+        include("backend/login.php");
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +47,7 @@
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/349ee9c857.js" crossorigin="anonymous"></script>
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
 </head>
@@ -40,21 +71,21 @@
                   <p class="mb-0">Welcome back! Please enter your details.</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form role="form" method="post">
                     <label>Email Address</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Enter your name" aria-label="Name" aria-describedby="name-addon">
+                      <input type="email" class="form-control" name="email" placeholder="Enter your email" aria-label="Email" aria-describedby="email-addon">
                     </div>
                     <label>Password</label>
                     <div class="mb-3">
-                      <input type="password" class="form-control" placeholder="Enter your email address" aria-label="Email" aria-describedby="email-addon">
+                      <input type="password" class="form-control" name="password" placeholder="Enter your password" aria-label="Password" aria-describedby="password-addon">
                     </div>
                     <label>Captcha</label>
-                    <div class="mb-3">
-                      <input type="number" class="form-control" placeholder="Enter Captcha" aria-label="Captcha">
-                    </div>
+                    <div class="mb-3 justify-content-center" style="text-align: center;">
+                        <div class="g-recaptcha" data-sitekey="6Lc9-LYoAAAAAAwB_O3JXFJfsYv_XiCmmj8XyhWA" name="captcha"></div>
+                      </div>
                     <div class="text-center">
-                      <a type="button" class="btn btn-dark w-100 mt-4 mb-3" href="admin/dashboard.php">Sign in</a>
+                      <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign in</button>
                     </div>
                   </form>
                 </div>
@@ -100,5 +131,4 @@
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
 </body>
-
 </html>

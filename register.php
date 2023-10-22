@@ -64,18 +64,22 @@
                   <p class="mb-0">Nice to meet you! Please enter your details.</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
-                    <label>Name</label>
+                  <form role="form" method="post" action="backend/register.php"  enctype="multipart/form-data">
+                  <label>Photo Profile</label>
                     <div class="mb-3">
-                      <input type="text" class="form-control" placeholder="Enter your name" aria-label="Name" aria-describedby="name-addon">
+                      <input name="profile" type="file" class="form-control" aria-label="Profile" aria-describedby="Profile">
+                    </div>  
+                  <label>Name</label>
+                    <div class="mb-3">
+                      <input name="nama" type="text" class="form-control" placeholder="Enter your name" aria-label="Name" aria-describedby="name-addon">
                     </div>
                     <label>Email Address</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Enter your email address" aria-label="Email" aria-describedby="email-addon">
+                      <input name="email" type="email" class="form-control" placeholder="Enter your email address" aria-label="Email" aria-describedby="email-addon">
                     </div>
                     <label>Password</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Create a password" aria-label="Password" aria-describedby="password-addon">
+                      <input name="password" type="password" class="form-control" placeholder="Create a password" aria-label="Password" aria-describedby="password-addon">
                     </div>
                     <div class="form-check form-check-info text-left mb-0">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -84,7 +88,7 @@
                       </label>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-dark w-100 mt-4 mb-3">Sign up</button>
+                      <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign up</button>
                     </div>
                   </form>
                 </div>

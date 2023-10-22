@@ -1,3 +1,13 @@
+<?php 
+include("../backend/koneksi.php"); 
+session_start();
+$nama = $_SESSION['nama'];
+$login_id = $_SESSION['id_profile'];
+$ambil = $conn->query("SELECT * FROM users WHERE id_profile = '$login_id'");
+$tampil = $ambil->fetch_assoc();
+$gambar = $tampil['profile'];
+$gambarUrl = './' . $gambar;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,14 +35,14 @@
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand d-flex align-items-center m-0" href=" https://demos.creative-tim.com/corporate-ui-dashboard/pages/dashboard.html " target="_blank">
+      <a class="navbar-brand d-flex align-items-center m-0" href="#" target="_blank">
         <span class="font-weight-bold text-lg">San Tech</span>
       </a>
     </div>
     <div class="collapse navbar-collapse px-4  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  active" href="../pages/dashboard.html">
+          <a class="nav-link  active" href="dashboard.html">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>dashboard</title>
@@ -112,7 +122,7 @@
             <li class="nav-item ps-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0">
                 <a href="profile.php">
-                <img src="../assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar"/>
+                <img src="<?php echo $gambarUrl ?>" class="avatar avatar-sm" alt="avatar"/>
                 </a>
               </a>
             </li>
@@ -126,7 +136,7 @@
         <div class="col-md-12">
           <div class="d-md-flex align-items-center mb-3 mx-2">
             <div class="mb-md-0 mb-3">
-              <h3 class="font-weight-bold mb-0">Hello, San</h3>
+              <h3 class="font-weight-bold mb-0">Hello, <?php echo $nama ?></h3>
               <p class="mb-0">Apps you might like!</p>
             </div>  
           </div>
